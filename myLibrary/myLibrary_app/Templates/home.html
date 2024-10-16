@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% extends "index.html" %}
+{% load static %}
+
+{% block main_content %}
+<main role="main">
+<div class="jumbotron">
+    <div class="container">
+        <img src="../static/maxlogo.jpg" alt="Logo" class="rounded float-start" height="200" style="margin-right: 10px;">
+        <h1 class="display-4">Hello, Readers!</h1>
+        <p>Welcome to myLibrary Web Application, 
+           we have large collection of books to cater the reading needs of all kinds od Readers.</p>
+        <p><a class="btn btn-primary btn-lg" role="button" href="/books">Browse our collection >></button></a></p>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <h2>Why reading is important ?</h2>
+        <p>Reading is important because it develops your mind and gives you excessive knowledge and lessons of life. It helps you understand the world around you better. It keeps your mind active and enhances your creative ability. Communication Skills: Reading improves your vocabulary and develops your communication skills.</p>
+      </div>
+      <div class="col">
+        <h2>Key Benifits</h2>
+        <p>
+            <ul type="disc">
+              <li>Improves brain connectivity.</li>
+              <li>Increases your vocabulary and comprehension.</li>
+              <li>empowers you to empathize with other people.</li>
+              <li>aids in sleep readiness.</li>
+              <li>reduces stress.</li>
+            </ul>
+        </p>
+      </div>
+      <div class="col">
+        <h2>Thought of the day!</h2>
+        <figure>
+          <blockquote class="blockquote">
+            <p>We often spend so much time coping with problems along our path that we only have a dim
+              or even inaccurate view of what’s really important to us.</p>
+          </blockquote>
+          <figcaption class="blockquote-footer text-end">
+            <cite title="Source Title">Peter Senge</cite>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+</div>
+</main>
+
+
+{% endblock %}

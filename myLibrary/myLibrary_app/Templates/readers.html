@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+{% extends "index.html" %}
+{% load static %}
+
+{% block main_content %}
+<!--<h1>I'm in readers page</h1>-->
+
+<div class="container-flex text-center justify-content-center align-items-center" style="">
+    <div class="row justify-content-center align-items-center" style="margin-top: 10px;">
+        <div class="col-md-4 text-light" style="background-color: blueviolet">
+            <h4 style="margin: 10px;">Register New Reader</h4>
+        </div>
+        <div class="col-md-8">
+            <h4 style="">Search Readers</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4" style="background-color: rgb(180, 230, 253);">
+            <div class="container" style="overflow-y: auto;height: auto;margin: 10px;">
+                <form class="d-flex" action="readers/add" method="POST">
+                    {% csrf_token %}
+                    <table class="table" style="margin: 10px;">
+                        <tbody>
+                            <tr style="text-align:left;vertical-align: middle;padding: 15px;">
+                                <th><label >Name</label></th>
+                                <th><input type="text" class="form-control" name="reader_name"></th>
+                            </tr>
+                            <tr style="text-align:left;vertical-align: middle;padding: 15px;">
+                                <th><label >Contact</label></th>
+                                <th><input type="text" class="form-control" name="reader_contact"></th>
+                            </tr>
+                            <tr style="text-align:left;vertical-align: middle;padding: 15px;">
+                                <th><label >Refernce ID</label></th>
+                                <th><input type="text" class="form-control" name="reference_id"></th>
+                            </tr>
+                            <tr style="text-align:left;vertical-align: middle;padding: 15px;">
+                                <th><label >Address</label></th>
+                                <th><textarea type="text" class="form-control" name="reader_address"></textarea></th>
+                            </tr>
+                            <tr>
+                                <th colspan="2"><button class="btn btn-primary" type="submit" style="width: 100%;">save</button></th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+                <ul style="text-align: left;">
+                    <small>
+                    <li>Readers sould not register multiple times.</li>
+                    <li>Dublicte reader registration will be deactivated.</li>
+                    <li>Contact information provided above must be correct and subject to verification.</li>
+                    </small>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row" >
+                <div class="navbar bg-body-light">
+                    <div class="container-fluid justify-content-center align-items-center">
+                        <form class="d-flex" action="readers" role="search" method="POST">
+                            {% csrf_token %}
+                            <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search" style="width: 600px;">
+                            <button class="btn btn-outline-primary" type="submit">
+                                <svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 10px;">
+                <p>Readers : {{ readers | length }}</p>
+            </div>
+            <div class="row" style="margin-top: 10px;">
+                <div class="container" style="overflow-y: auto;">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th style="display: none;">Reader Id</th>
+                                <th>Reference Id</th>
+                                <th>Name</th>
+                                <th>Contact</th>
+                                <th>Address</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for reader in readers %}
+                                <tr>
+                                    <th style="display: none;">{{reader.id}}</th>
+                                    <th>{{reader.reference_id}}</th>
+                                    <th>
+                                        {% if reader.active %}
+                                            <span class="btn btn-success">{{reader.reader_name}}</span>
+                                        {% else %}
+                                            <span class="btn btn-secondary">{{reader.reader_name}}</span>
+                                        {% endif %}
+                                    </th>
+                                    <th>{{reader.reader_contact}}</th>
+                                    <th>{{reader.reader_address}}</th>
+                                    <th>
+                                        <form action="readers/delete" method="POST">
+                                            {% csrf_token %}
+                                            <input type="hidden" name='reader_id' value={{reader.id}}>
+                                            <button type="submit" class="btn btn-outline-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+                                              </svg></button>
+                                        </form>
+                                        <!--<a class="btn btn-outline-success" href="#" role="button">EDIT</a>
+                                        <a class="btn btn-outline-danger" href="readers/delete" name='delete'  role="button">DELET</a>-->
+                                    </th>
+                                </tr>
+                                
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

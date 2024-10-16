@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myLibrary</title>
+    <style>
+        .my_lable{
+            color: blue;
+            font-size: medium;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to our myLibrary Web Application !</h1>
+    
+    <form method="POST" action="/save">
+        {% csrf_token %}
+        <table>
+            <tbody>
+                <tr>
+                    <th><label class="my_lable">Student Name </label></th>
+                    <th>:<input type="text" name="stud_name"></th>
+                </tr>
+                <tr>
+                    <th><label class="my_lable">Student Age </label></th>
+                    <th>:<input type="text" name="stud_age"></th>
+                </tr>
+                <tr>
+                    <th colspan="2"><button style="width: 100%;margin-top: 10px;" type="submit">save</button></th>
+                </tr>
+            </tbody>
+        </table>
+        
+        
+        
+        
+        
+
+    </form>
+
+
+    <a href="/shop">shoping</a>
+
+</body>
+</html>

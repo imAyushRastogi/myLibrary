@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>myLibrary</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <style>
+            .jumbotron{
+                padding: 2rem 1rem;
+                margin-bottom: 2rem;
+                background-color: gainsboro;
+                border-radius: 0.3rem;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <header>
+            <nav class="navbar bg-body-tertiary">
+                <div class="container-fluid justify-content-center" style="background-color: blue;">
+                    <a class="navbar-brand" href="#">
+                        
+                        <span class="navbar-brand mb-0 h1 text-light" style="justify-content: center; font-size: 25px;"><img src="../static/minlogn.png" alt="Logo" height="80">myLibrary</span>
+                    </a>
+                </div>
+            </nav>
+            <div class="container-fluid justify-content-center align-items-center">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        {% if current_tab == 'home' %}
+                            <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                        {% else %}
+                            <a class="nav-link" aria-current="page" href="/home">Home</a>
+                        {% endif %}
+
+                    </li>
+                    <li class="nav-item">
+                        {% if current_tab == 'readers' %}
+                            <a class="nav-link active" aria-current="page" href="/readers">Readers</a>
+                        {% else %}
+                            <a class="nav-link" aria-current="page" href="/readers">Readers</a>
+                        {% endif %}
+                    </li>
+                    <li class="nav-item">
+                        {% if current_tab == 'books' %}
+                            <a class="nav-link active" aria-current="page" href="/books">Books</a>
+                        {% else %}
+                            <a class="nav-link" aria-current="page" href="/books">Books</a>
+                        {% endif %}
+                    </li>
+                    <li class="nav-item">
+                        {% if current_tab == 'mybag' %}
+                            <a class="nav-link active" aria-current="page" href="/mybag">My Bag</a>
+                        {% else %}
+                            <a class="nav-link" aria-current="page" href="/mybag">My Bag</a>
+                        {% endif %}
+                    </li>
+                    <li class="nav-item">
+                        {% if current_tab == 'return' %}
+                            <a class="nav-link active" aria-current="page" href="/return">Return</a>
+                        {% else %}
+                            <a class="nav-link" aria-current="page" href="/return">Return</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </header>
+        {% block main_content %}
+        {% endblock %}
+        <hr>
+        <footer class="container">
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-c-circle" viewBox="0 0 16 16">
+                <path d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.146 4.992c-1.212 0-1.927.92-1.927 2.502v1.06c0 1.571.703 2.462 1.927 2.462.979 0 1.641-.586 1.729-1.418h1.295v.093c-.1 1.448-1.354 2.467-3.03 2.467-2.091 0-3.269-1.336-3.269-3.603V7.482c0-2.261 1.201-3.638 3.27-3.638 1.681 0 2.935 1.054 3.029 2.572v.088H9.875c-.088-.879-.768-1.512-1.729-1.512Z"/>
+              </svg> myLibrary 2023</p>
+          </footer>
+    </body>
+</html>
